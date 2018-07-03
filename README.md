@@ -12,6 +12,12 @@ Refer to the example programs in `examples/token` and `examples\vm` for some ide
 
 *Note that the `token` example requires the `golang.org/x/crypto/ssh/terminal` package be installed, its used to suppress echoing of the password to stdout when prompting the user to enter it.*
 
+Refer to the [godocs](https://godoc.org/github.com/johnmccabe/go-vmpooler) for the following packages for more info.
+
+- [token](https://godoc.org/github.com/johnmccabe/go-vmpooler/token)
+- [vm](https://godoc.org/github.com/johnmccabe/go-vmpooler/token)
+
+
 ## Stability
 
 There is currently only an early v0.0.x release available, there may be breaking changes introduced, please raise an issue or reach out to me with feedback/suggestions.

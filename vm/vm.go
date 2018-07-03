@@ -278,8 +278,8 @@ func parseTemplate(id string) Template {
 	template := Template{
 		Id:    id,
 		Os:    parts[0],
-		Osver: parts[1],
-		Arch:  parts[2],
+		Osver: strings.Join(parts[1:len(parts)-1], "-"),
+		Arch:  parts[len(parts)-1],
 	}
 	return template
 }

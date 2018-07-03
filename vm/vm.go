@@ -283,3 +283,14 @@ func parseTemplate(id string) Template {
 	}
 	return template
 }
+
+func responseOk(response map[string]interface{}) error {
+	if r, ok := response["ok"]; ok {
+		if rb, ok := r.(bool); !ok || !rb {
+			return errors.New("response from vmpooler not OK")
+		}
+	} else {
+		return errors.New("invalid response returned from vmpooler")
+	}
+	return nil
+}

@@ -1,6 +1,10 @@
-![vmpooler](images/go-vmpooler.jpg)
-
 # go-vmpooler
+
+[![Go Report Card Badge]][Go Report Card]
+[![GoDoc Badge]][GoDoc]
+[![Release Badge]][Release]
+
+![vmpooler](images/go-vmpooler.jpg)
 
 go-vmpooler provides a depdendency free Go client library for working with [vmpooler](https://github.com/puppetlabs/vmpooler).
 
@@ -21,3 +25,10 @@ Refer to the [godocs](https://godoc.org/github.com/johnmccabe/go-vmpooler) for t
 ## Stability
 
 There is currently only an early v0.0.x release available, there may be breaking changes introduced, please raise an issue or reach out to me with feedback/suggestions.
+
+[Go Report Card]: https://goreportcard.com/report/github.com/johnmccabe/go-vmpooler
+[Go Report Card Badge]: https://goreportcard.com/badge/github.com/johnmccabe/go-vmpooler
+[GoDoc]: https://godoc.org/github.com/johnmccabe/go-vmpooler
+[GoDoc Badge]: https://godoc.org/github.com/johnmccabe/go-vmpooler?status.svg
+[Release]: https://github.com/johnmccabe/go-vmpooler/releases/latest
+[Release Badge]: https://img.shields.io/github/release/johnmccabe/go-vmpooler.svg?style=flat-square

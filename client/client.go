@@ -3,7 +3,6 @@ package client
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 )
@@ -47,7 +46,7 @@ func (c *BaseClient) Send(req *http.Request, v interface{}) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode < 200 || resp.StatusCode > 299 {
-		return fmt.Errorf("%d", resp.StatusCode)
+		return httpError(req, resp)
 	}
 
 	if v != nil {

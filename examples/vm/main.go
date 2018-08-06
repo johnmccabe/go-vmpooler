@@ -2,12 +2,13 @@ package main
 
 import (
 	"log"
+	"strings"
 
 	"github.com/johnmccabe/go-vmpooler/vm"
 )
 
 const vmpoolerEndpoint = "https://vmpooler.mydomain.com/api/v1"
-const myToken = "randomlygeneratedtoken" // see Generate() in github.com/johnmccabe/go-vmpooler/token
+const myToken = "kpy2fn8sgjkcbyn896yilzqfaketoken" // see Generate() in github.com/johnmccabe/go-vmpooler/token
 const myTemplate = "centos-5-x86_64"
 
 func main() {
@@ -33,7 +34,7 @@ func main() {
 	log.Printf("%#v", *virtualmachine)
 
 	log.Print("SetLifetime VM ===")
-	virtualmachine, err = c.SetLifetime(virtualmachine.Hostname, 20)
+	virtualmachine, err = c.SetLifetime(virtualmachine.Hostname, 5)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -57,12 +58,12 @@ func main() {
 	}
 	log.Printf("%#v", *virtualmachine)
 
-	log.Print("Delete VM ===")
-	if err = c.Delete(virtualmachine.Hostname); err != nil {
-		log.Fatal(err.Error())
-	} else {
-		log.Printf("deleted: %s", virtualmachine.Hostname)
-	}
+	// log.Print("Delete VM ===")
+	// if err = c.Delete(virtualmachine.Hostname); err != nil {
+	// 	log.Fatal(err.Error())
+	// } else {
+	// 	log.Printf("deleted: %s", virtualmachine.Hostname)
+	// }
 
 	log.Print("List VMs ===")
 	virtualmachines, err = c.GetAll()
@@ -71,12 +72,36 @@ func main() {
 	}
 	log.Printf("%#v", virtualmachines)
 
-	log.Print("Delete All ===")
-	for _, vm := range virtualmachines {
-		if err = c.Delete(vm.Hostname); err != nil {
-			log.Fatal(err.Error())
+	// log.Print("Delete All ===")
+	// for _, vm := range virtualmachines {
+	// 	if err = c.Delete(vm.Hostname); err != nil {
+	// 		log.Fatal(err.Error())
+	// 	} else {
+	// 		log.Printf("deleted: %s", vm.Hostname)
+	// 	}
+	// }
+
+	cnvmmap := createNewVMMap(templates)
+
+	log.Print("New VM Map ===")
+	log.Printf("#%v\n", cnvmmap)
+
+}
+
+func createNewVMMap(templates []string) map[string][]string {
+	result := map[string][]string{}
+	for _, template := range templates {
+		os := getTemplateOS(template)
+		if _, ok := result[os]; ok {
+			result[os] = append(result[os], template)
 		} else {
-			log.Printf("deleted: %s", vm.Hostname)
+			result[os] = []string{template}
 		}
 	}
+	return result
+}
+
+func getTemplateOS(template string) string {
+	parts := strings.Split(template, "-")
+	return parts[0]
 }

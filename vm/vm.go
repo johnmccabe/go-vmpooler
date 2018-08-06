@@ -16,7 +16,7 @@ type VM struct {
 	Ip       string
 	State    string
 	Running  float64
-	Lifetime float64
+	Lifetime int
 	Tags     map[string]string
 	Template Template
 }
@@ -31,7 +31,7 @@ type Template struct {
 
 type legacyVM struct {
 	Template string
-	Lifetime float64
+	Lifetime int
 	Running  float64
 	State    string
 	Tags     map[string]string
@@ -91,7 +91,7 @@ func (c *Client) Get(hostname string) (*VM, error) {
 		Ip:       lvm["ip"].(string),
 		State:    lvm["state"].(string),
 		Running:  lvm["running"].(float64),
-		Lifetime: lvm["lifetime"].(float64),
+		Lifetime: int(lvm["lifetime"].(float64)),
 		Template: parseTemplate(lvm["template"].(string)),
 	}
 

@@ -6,7 +6,7 @@
 
 ![vmpooler](images/go-vmpooler.jpg)
 
-go-vmpooler provides a depdendency free Go client library for working with [vmpooler](https://github.com/puppetlabs/vmpooler).
+go-vmpooler provides a dependency free Go client library for working with [vmpooler](https://github.com/puppetlabs/vmpooler).
 
 Vmpooler provides configurable 'pools' of instantly-available virtual machines running on VMWare VSphere. 
 
